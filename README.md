@@ -1,5 +1,10 @@
 # Viñeta para KOReader
 
+> **Basado en [Viñeta](https://play.google.com/store/apps/details?id=com.dsp.vineta), la app de Android para leer cómics viñeta a viñeta.**
+> Este plugin lleva a los lectores e-ink con KOReader el mismo detector de viñetas de la app.
+
+<a href="https://play.google.com/store/apps/details?id=com.dsp.vineta"><img alt="Disponible en Google Play" src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" height="64"></a>
+
 Plugin de [KOReader](https://koreader.rocks) para leer cómics **viñeta a viñeta** en lectores e-ink. Las viñetas las busca el propio lector con el detector de Viñeta, mientras lees: no hay que preparar nada en el PC y el cómic no se modifica.
 
 ## Instalar
