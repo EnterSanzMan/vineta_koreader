@@ -1,0 +1,15 @@
+node_modules/
+tests/emulator/.cache/
+*.tmp
+# cómics de prueba con derechos: nunca al repo (el sintético sí)
+*.cbz
+*.cbr
+*.cbt
+*.rar
+*.pdf
+!tests/fixtures/sintetico.cbz
+!tests/fixtures/sintetico.vineta.cbz
+
+# guías para agentes de código: solo en local
+AGENTS.md
+CLAUDE.md

@@ -1,0 +1,31 @@
+Viñeta a viñeta para KOReader
+Copyright (C) 2026 EnterSanzMan
+https://github.com/EnterSanzMan/vineta_koreader
+
+Este programa es software libre: puedes redistribuirlo y modificarlo según
+los términos de la GNU Affero General Public License versión 3 (fichero
+LICENSE).
+
+Término adicional según el apartado 7 b) de la AGPL-3.0: quien redistribuya
+este programa o una obra derivada de él, entera o en parte (incluido el
+detector de viñetas, en Lua o en JavaScript), debe conservar este aviso y
+mostrar, en la documentación y donde la obra muestre sus créditos o avisos
+legales, la atribución:
+
+    Basado en «Viñeta a viñeta para KOReader», de EnterSanzMan
+    (https://github.com/EnterSanzMan/vineta_koreader)
+
+---
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU Affero General Public License version 3 (file
+LICENSE).
+
+Additional term under section 7(b) of the AGPL-3.0: anyone who conveys this
+program or a work based on it, in whole or in part (including the panel
+detector, in Lua or JavaScript), must preserve this notice and display, in
+the documentation and wherever the work shows its credits or legal notices,
+the attribution:
+
+    Based on "Viñeta a viñeta para KOReader" by EnterSanzMan
+    (https://github.com/EnterSanzMan/vineta_koreader)

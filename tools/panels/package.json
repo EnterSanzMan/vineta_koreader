@@ -1,0 +1,21 @@
+{
+  "name": "vineta-panels",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Genera el fichero de viñetas (.panels.json) de un cómic con el detector de Viñeta, para el plugin de KOReader",
+  "type": "module",
+  "bin": {
+    "vineta-panels": "panels.mjs"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.1",
+    "node-unrar-js": "^2.0.2",
+    "sharp": "^0.35.5"
+  }
+}
