@@ -243,5 +243,30 @@ test("wantsBalloons compares the panel's shape with the screen's", function()
     assert(Panels.wantsBalloons({ x = 0, y = 0, w = 0.2, h = 1 }, native, scr[1], scr[2])) -- 0.1 vs 0.75
 end)
 
+test("zoom off: every page is only the whole page, never pending", function()
+    local m = sample()
+    for _, page in ipairs({ 1, 3, 4 }) do -- with panels, single, not detected yet
+        local s = Panels.steps(m, page, native, false, noMargin, true)
+        eq(#s, 1, "page " .. page); assert(s[1].full); near(s[1].w, 500)
+        eq(s[1].pending, nil, "pending page " .. page)
+    end
+    -- the navigator turns pages without waiting for the detection
+    local nav = Panels.navigator(5, function(p) return Panels.steps(m, p, native, false, noMargin, true) end, 3, 1)
+    assert(not nav:pending())
+    eq(nav:next(), "page"); eq(nav.page, 4)
+    eq(nav:next(), "page"); eq(nav.page, 5)
+end)
+
+test("firstPanel skips the whole page", function()
+    local m = sample()
+    local nav = Panels.navigator(5, function(p) return Panels.steps(m, p, native, false, noMargin) end, 1, 1)
+    eq(nav:firstPanel(), 2)
+    nav:jump(3, 1); eq(nav:firstPanel(), 1) -- whole-page page
+    nav:jump(4, 1); eq(nav:firstPanel(), 1) -- pending
+    local o = { margin = 0, max_zoom = 4, overview = false }
+    nav = Panels.navigator(5, function(p) return Panels.steps(m, p, native, false, o) end, 1, 1)
+    eq(nav:firstPanel(), 1)
+end)
+
 print(("%d tests, %d failures"):format(count, failures))
 os.exit(failures == 0 and 0 or 1)

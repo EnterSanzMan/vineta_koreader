@@ -36,6 +36,7 @@ local PanelViewer = InputContainer:extend{
                         -- prefetch (pages detected ahead), gamma (minimum contrast), indicator
     page = 1,
     index = 1,
+    zoom = true,        -- false: zoom switched off (pinch / swipe up or down), whole pages only
     on_close = nil,     -- function(viewer) called after closing
 
     covers_fullscreen = true, -- hint for UIManager:_repaint()
@@ -62,6 +63,8 @@ function PanelViewer:init()
             Tap = { GestureRange:new{ ges = "tap", range = range } },
             Hold = { GestureRange:new{ ges = "hold", range = range } },
             Swipe = { GestureRange:new{ ges = "swipe", range = range } },
+            Pinch = { GestureRange:new{ ges = "pinch", range = range } },
+            Spread = { GestureRange:new{ ges = "spread", range = range } },
         }
     end
 
@@ -74,7 +77,8 @@ function PanelViewer:makeNavigator()
     -- Panels.steps needs the screen size to decide which panels go in two halves.
     self.opts.screen_w, self.opts.screen_h = self.dimen.w, self.dimen.h
     self.nav = Panels.navigator(doc:getPageCount(), function(page)
-        return Panels.steps(self.model, page, doc:getNativePageDimensions(page), self.rtl, self.opts)
+        return Panels.steps(self.model, page, doc:getNativePageDimensions(page), self.rtl, self.opts,
+            self.zoom == false)
     end, self.page, self.index)
 end
 
@@ -141,7 +145,14 @@ end
 -- Small «step / steps» label in the bottom right corner.
 function PanelViewer:indicator()
     local n = #self.nav:steps(self.nav.page)
-    local label = self.nav:pending() and "…" or ("%d/%d"):format(self.nav.index, n)
+    local label
+    if self.zoom == false then
+        label = "sin zoom"
+    elseif self.nav:pending() then
+        label = "…"
+    else
+        label = ("%d/%d"):format(self.nav.index, n)
+    end
     local frame = FrameContainer:new{
         background = Blitbuffer.COLOR_WHITE,
         bordersize = Size.border.thin,
@@ -303,12 +314,38 @@ end
 
 function PanelViewer:onSwipe(_, ges)
     local dir = ges.direction
+    -- Up or down: zoom on ↔ off (one finger, also for screens without multitouch).
+    if dir == "north" or dir == "south" then return self:setZoom(self.zoom == false) end
     local forward = dir == "west"
     local backward = dir == "east"
     if self.rtl then forward, backward = backward, forward end
     if forward then return self:onNext() end
     if backward then return self:onPrev() end
     return false
+end
+
+-- Pinch (fingers closing): zoom off. Spread (fingers opening): zoom on.
+function PanelViewer:onPinch()
+    return self:setZoom(false)
+end
+
+function PanelViewer:onSpread()
+    return self:setZoom(true)
+end
+
+-- Zoom off: every page is shown whole and taps turn pages (for pages the user does not
+-- want in panels). Zoom on again: the panels of the current page, from the first one.
+function PanelViewer:setZoom(on)
+    on = on ~= false
+    if (self.zoom ~= false) == on then return true end
+    self.zoom = on
+    self._whole_page = false
+    self._waiting = false
+    self.nav:reset()
+    self.nav:jump(self.nav.page, on and self.nav:firstPanel() or 1)
+    Notification:notify(on and "Zoom activado: viñeta a viñeta" or "Zoom desactivado: páginas enteras")
+    self:renderStep()
+    return true
 end
 
 -- Long press: whole page ↔ current panel.
@@ -338,6 +375,13 @@ function PanelViewer:showMenu()
                     UIManager:close(dialog)
                     self.rtl_user = true
                     self:setRtl(not self.rtl)
+                end,
+            } },
+            { {
+                text = self.zoom == false and "Activar el zoom (viñeta a viñeta)" or "Desactivar el zoom (páginas enteras)",
+                callback = function()
+                    UIManager:close(dialog)
+                    self:setZoom(self.zoom == false)
                 end,
             } },
             { {

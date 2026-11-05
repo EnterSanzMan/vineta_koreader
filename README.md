@@ -24,7 +24,11 @@ El menú de KOReader → pestaña de navegación → «Viñeta a viñeta» tiene
 | Toque a la derecha / botón de avance | Siguiente viñeta |
 | Toque a la izquierda / botón de retroceso | Viñeta anterior |
 | Pulsación larga | Página completa ↔ viñeta |
-| Toque en el centro | Menú (sentido manga, página completa, salir) |
+| Pellizcar (juntar dos dedos) / deslizar arriba o abajo | Desactivar el zoom: páginas enteras, se pasa de página en página |
+| Separar dos dedos / deslizar arriba o abajo | Volver a activar el zoom: viñeta a viñeta desde la primera viñeta |
+| Toque en el centro | Menú (sentido manga, zoom, página completa, salir) |
+
+Sin zoom, la esquina muestra «sin zoom». Cada cómic recuerda si lo dejaste con el zoom activado o desactivado.
 
 En el menú «Viñeta a viñeta» de KOReader también puedes:
 

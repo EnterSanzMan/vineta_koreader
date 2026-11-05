@@ -231,6 +231,7 @@ function Vineta:start(resume)
         model = self.model,
         request = function(p, urgent) self:runner():request(p, urgent) end,
         rtl = rtl,
+        zoom = state.zoom ~= false,
         opts = self:options(),
         page = page,
         index = index,
@@ -252,6 +253,7 @@ function Vineta:remember(viewer)
     self.state.page = viewer.nav.page
     self.state.index = viewer.nav.index
     self.state.rtl = viewer.rtl
+    self.state.zoom = viewer.zoom ~= false
     if viewer.rtl_user then self.state.rtl_user = true end
     self.state.active = true
 end

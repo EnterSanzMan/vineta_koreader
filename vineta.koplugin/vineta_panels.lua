@@ -126,8 +126,11 @@ end
 --     before its panels, if no panel crosses the middle.
 -- A page without panels is only the whole page; while the page is not detected yet,
 -- that step has pending = true.
-function Panels.steps(model, page, native, rtl, opts)
+-- whole_only: zoom switched off by the user, every page is only the whole page (never
+-- pending: turning pages does not wait for the detection).
+function Panels.steps(model, page, native, rtl, opts, whole_only)
     opts = opts or Panels.defaults
+    if whole_only then return { { x = 0, y = 0, w = native.w, h = native.h, full = true } } end
     local entry = model and model.pages[page]
     local whole = { x = 0, y = 0, w = native.w, h = native.h, full = true, pending = entry == nil }
     if not entry or entry.kind == "text" or entry.kind == "error" then return { whole } end
@@ -254,6 +257,14 @@ function Navigator:next()
     if self.page >= self.page_count then return "end" end
     self:jump(self.page + 1, 1)
     return "page"
+end
+
+--- First step that is not the whole page (the first panel), or 1 if there is none.
+function Navigator:firstPanel()
+    for i, s in ipairs(self:steps(self.page)) do
+        if not s.full then return i end
+    end
+    return 1
 end
 
 --- Previous step. Returns "step", "page" or "start" (already at the beginning).
