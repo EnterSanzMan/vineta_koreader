@@ -1,56 +1,62 @@
-# Viñeta para KOReader
+# Viñeta for KOReader
 
-> **Basado en [Viñeta](https://play.google.com/store/apps/details?id=com.dsp.vineta), la app de Android para leer cómics viñeta a viñeta.**
-> Este plugin lleva a los lectores e-ink con KOReader el mismo detector de viñetas de la app.
+**English** · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md)
 
-<a href="https://play.google.com/store/apps/details?id=com.dsp.vineta"><img alt="Disponible en Google Play" src="https://play.google.com/intl/es/badges/static/images/badges/es_badge_web_generic.png" height="64"></a>
+> **Based on [Viñeta](https://play.google.com/store/apps/details?id=com.dsp.vineta), the Android app for reading comics panel by panel.**
+> This plugin brings the app's panel detector to e-ink readers running KOReader.
 
-Plugin de [KOReader](https://koreader.rocks) para leer cómics **viñeta a viñeta** en lectores e-ink. Las viñetas las busca el propio lector con el detector de Viñeta, mientras lees: no hay que preparar nada en el PC y el cómic no se modifica.
+<a href="https://play.google.com/store/apps/details?id=com.dsp.vineta"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="64"></a>
 
-## Instalar
+A [KOReader](https://koreader.rocks) plugin for reading comics **panel by panel** on e-ink readers. The reader itself finds the panels with Viñeta's detector while you read: there is nothing to prepare on your computer and the comic file is never modified.
 
-1. Instala [KOReader](https://github.com/koreader/koreader/releases) en tu lector.
-2. Copia la carpeta `vineta.koplugin` dentro de la carpeta `plugins` de KOReader. Por ejemplo:
+> **Note:** the plugin's menus are in Spanish for now. Below, menu entries are quoted as they appear on screen, followed by their meaning.
+
+## Installation
+
+1. Install [KOReader](https://github.com/koreader/koreader/releases) on your reader.
+2. Copy the `vineta.koplugin` folder into KOReader's `plugins` folder. For example:
    - PocketBook: `applications/koreader/plugins/`
    - Kobo: `.adds/koreader/plugins/`
    - Kindle: `koreader/plugins/`
-3. Reinicia KOReader y abre un cómic CBZ o CBR desde su explorador de archivos.
+3. Restart KOReader and open a CBZ or CBR comic from its file browser.
 
-## Leer
+## Reading
 
-El cómic se abre solo en el modo viñeta a viñeta. Cada página se ve primero entera y después viñeta a viñeta. Las viñetas grandes, que casi no se agrandarían en la pantalla, se ven en dos mitades: primero la izquierda y luego la derecha. Si el cómic trae un `ComicInfo.xml` que dice que es manga, se lee de derecha a izquierda sin tocar nada. Un número pequeño en la esquina («3/7») indica por qué paso de la página vas.
+Comics open in panel-by-panel mode automatically. Each page is first shown whole and then panel by panel. Large panels, which would barely get any bigger on screen, are shown in two halves: first the left one, then the right one. If the comic includes a `ComicInfo.xml` saying it is manga, it is read right to left with no setup. A small number in the corner ("3/7") shows which step of the page you are on.
 
-Cada página se analiza en segundo plano la primera vez que se lee, y lo detectado se guarda: al volver al cómic ya no hay que esperar.
+Each page is analysed in the background the first time it is read, and the result is saved: when you come back to the comic there is no waiting.
 
-El menú de KOReader → pestaña de navegación → «Viñeta a viñeta» tiene el interruptor **«Activado»** para encender o apagar el plugin. Desde ahí también se entra en el modo con un PDF o si saliste de él.
+KOReader's menu → navigation tab → «Viñeta a viñeta» (panel by panel) has the **«Activado»** (enabled) switch to turn the plugin on or off. From there you can also enter the mode with a PDF, or if you left it.
 
 | | |
 |---|---|
-| Toque a la derecha / botón de avance | Siguiente viñeta |
-| Toque a la izquierda / botón de retroceso | Viñeta anterior |
-| Pulsación larga | Página completa ↔ viñeta |
-| Pellizcar (juntar dos dedos) / deslizar arriba o abajo | Desactivar el zoom: páginas enteras, se pasa de página en página |
-| Separar dos dedos / deslizar arriba o abajo | Volver a activar el zoom: viñeta a viñeta desde la primera viñeta |
-| Toque en el centro | Menú (sentido manga, zoom, página completa, salir) |
+| Tap on the right / forward button | Next panel |
+| Tap on the left / back button | Previous panel |
+| Long press | Whole page ↔ panel |
+| Pinch (two fingers together) / swipe up or down | Turn zoom off: whole pages, turning page by page |
+| Spread (two fingers apart) / swipe up or down | Turn zoom back on: panel by panel from the first panel |
+| Tap in the centre | Menu (manga direction, zoom, whole page, exit) |
 
-Sin zoom, la esquina muestra «sin zoom». Cada cómic recuerda si lo dejaste con el zoom activado o desactivado.
+With zoom off, the corner shows «sin zoom» (no zoom). Each comic remembers whether you left it with zoom on or off.
 
-En el menú «Viñeta a viñeta» de KOReader también puedes:
+In KOReader's «Viñeta a viñeta» menu you can also:
 
-- empezar cada página entera o directamente en su primera viñeta;
-- partir en dos mitades las viñetas que no ganan un 10, 20, 30 o 50 % de ancho, o ninguna;
-- hacer zoom a los bocadillos de las viñetas muy anchas o muy altas;
-- ver primero cada mitad de las páginas dobles;
-- subir el contraste (los cómics en color salen lavados en 16 grises);
-- ocultar el número de paso;
-- elegir cada cuánto se limpia la pantalla, también «al cambiar de página»;
-- analizar 2 páginas por delante, 5 o el cómic entero, y elegir el análisis rápido (menos preciso);
-- volver a buscar las viñetas de un cómic. En «Toques y gestos» puedes asignar a un gesto «Activar o desactivar Viñeta a viñeta».
+- start each page whole or go straight to its first panel;
+- split into two halves the panels that don't gain 10, 20, 30 or 50 % in width, or none;
+- zoom into the speech balloons of very wide or very tall panels;
+- see each half of double-page spreads first;
+- raise the contrast (colour comics look washed out in 16 greys);
+- hide the step number;
+- choose how often the screen is fully refreshed, including "on page change";
+- analyse 2 pages ahead, 5, or the whole comic, and choose the fast analysis (less accurate);
+- detect the panels of a comic again.
 
-Cómo está hecho el detector en Lua: [docs/detector-lua.md](docs/detector-lua.md).
+In «Toques y gestos» (Taps and gestures) you can assign «Activar o desactivar Viñeta a viñeta» (toggle panel by panel) to a gesture.
 
-## Licencia
+How the detector is built in Lua (in Spanish): [docs/detector-lua.md](docs/detector-lua.md).
 
-[AGPL-3.0](LICENSE), la misma que KOReader. Puedes usar, modificar y redistribuir el plugin siempre que compartas el código con la misma licencia.
+## Licence
 
-Además, con el apartado 7 b) de la AGPL, quien redistribuya el plugin o una obra derivada (también solo el detector de viñetas) debe conservar la atribución a su autor. Los detalles están en [NOTICE](NOTICE).
+[AGPL-3.0](LICENSE), the same as KOReader. You may use, modify and redistribute the plugin as long as you share the code under the same licence.
+
+In addition, under section 7(b) of the AGPL, anyone who redistributes the plugin or a work based on it (including just the panel detector) must preserve the attribution to its author. See [NOTICE](NOTICE) for details.
