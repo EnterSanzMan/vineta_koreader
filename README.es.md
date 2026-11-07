@@ -9,6 +9,8 @@
 
 Plugin de [KOReader](https://koreader.rocks) para leer cómics **viñeta a viñeta** en lectores e-ink. Las viñetas las busca el propio lector con el detector de Viñeta, mientras lees: no hay que preparar nada en el PC y el cómic no se modifica.
 
+Los menús del plugin salen en el idioma de KOReader: inglés, castellano, portugués, francés o alemán (en inglés con cualquier otro idioma).
+
 ## Instalar
 
 1. Instala [KOReader](https://github.com/koreader/koreader/releases) en tu lector.

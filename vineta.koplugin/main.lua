@@ -19,6 +19,7 @@ local Detect = require("vineta_detect")
 local Panels = require("vineta_panels")
 local PanelViewer = require("vineta_viewer")
 local Runner = require("vineta_runner")
+local T = require("vineta_i18n").T
 
 -- Opened in panel mode by default (if the user did not leave it in that book).
 local COMIC_TYPES = { cbz = true, cbr = true, cbt = true, cb7 = true, zip = true }
@@ -44,10 +45,10 @@ end
 
 function Vineta:onDispatcherRegisterActions()
     Dispatcher:registerAction("vineta_toggle", {
-        category = "none", event = "VinetaToggle", title = "Viñeta a viñeta", paging = true,
+        category = "none", event = "VinetaToggle", title = T("Viñeta a viñeta"), paging = true,
     })
     Dispatcher:registerAction("vineta_switch", {
-        category = "none", event = "VinetaSwitch", title = "Activar o desactivar Viñeta a viñeta", paging = true,
+        category = "none", event = "VinetaSwitch", title = T("Activar o desactivar Viñeta a viñeta"), paging = true,
     })
 end
 
@@ -97,7 +98,7 @@ end
 function Vineta:onVinetaSwitch()
     self:setEnabled(not isEnabled())
     local Notification = require("ui/widget/notification")
-    Notification:notify(isEnabled() and "Viñeta a viñeta activado" or "Viñeta a viñeta desactivado")
+    Notification:notify(isEnabled() and T("Viñeta a viñeta activado") or T("Viñeta a viñeta desactivado"))
     return true
 end
 
@@ -217,7 +218,7 @@ end
 function Vineta:start(resume)
     if self.viewer or not isEnabled() then return end
     if not self.available then
-        UIManager:show(InfoMessage:new{ text = "El modo viñeta a viñeta solo funciona con cómics (CBZ, CBR, CBT, CB7) y PDF." })
+        UIManager:show(InfoMessage:new{ text = T("El modo viñeta a viñeta solo funciona con cómics (CBZ, CBR, CBT, CB7) y PDF.") })
         return
     end
     local page = self.ui.paging.current_page
@@ -261,7 +262,7 @@ end
 function Vineta:onVinetaToggle()
     if not self.ui.paging then return end
     if not isEnabled() then
-        UIManager:show(InfoMessage:new{ text = "Viñeta a viñeta está desactivado. Actívalo en su menú.", timeout = 3 })
+        UIManager:show(InfoMessage:new{ text = T("Viñeta a viñeta está desactivado. Actívalo en su menú."), timeout = 3 })
         return true
     end
     if self.viewer then
@@ -359,11 +360,11 @@ end
 function Vineta:addToMainMenu(menu_items)
     if not self.ui.paging then return end
     menu_items.vineta = {
-        text = "Viñeta a viñeta",
+        text = T("Viñeta a viñeta"),
         sorting_hint = "navi",
         sub_item_table = {
             {
-                text = "Activado",
+                text = T("Activado"),
                 checked_func = isEnabled,
                 callback = function(touchmenu_instance)
                     local on = not isEnabled()
@@ -374,53 +375,53 @@ function Vineta:addToMainMenu(menu_items)
                 separator = true,
             },
             {
-                text = "Leer viñeta a viñeta",
+                text = T("Leer viñeta a viñeta"),
                 enabled_func = isEnabled,
                 callback = function(touchmenu_instance)
                     if touchmenu_instance then touchmenu_instance:closeMenu() end
                     self:start(true)
                 end,
             },
-            self:toggleItem("autostart", "Abrir los cómics en este modo"),
+            self:toggleItem("autostart", T("Abrir los cómics en este modo")),
             {
-                text = "Volver a buscar las viñetas de este cómic",
+                text = T("Volver a buscar las viñetas de este cómic"),
                 enabled_func = function() return self.available == true and isEnabled() end,
                 callback = function() self:redetect() end,
                 separator = true,
             },
-            self:toggleItem("overview", "Empezar cada página entera"),
-            self:choiceItem("split", function(l) return "Partir en dos mitades: " .. l end, {
-                { 1.1, "Las que no ganan un 10 % de ancho", "< 10 %" },
-                { 1.2, "Las que no ganan un 20 % de ancho", "< 20 %" },
-                { 1.3, "Las que no ganan un 30 % de ancho", "< 30 %" },
-                { 1.5, "Las que no ganan un 50 % de ancho", "< 50 %" },
-                { 0, "Ninguna", "no" },
+            self:toggleItem("overview", T("Empezar cada página entera")),
+            self:choiceItem("split", function(l) return T("Partir en dos mitades: %s", l) end, {
+                { 1.1, T("Las que no ganan un %d %% de ancho", 10), "< 10 %" },
+                { 1.2, T("Las que no ganan un %d %% de ancho", 20), "< 20 %" },
+                { 1.3, T("Las que no ganan un %d %% de ancho", 30), "< 30 %" },
+                { 1.5, T("Las que no ganan un %d %% de ancho", 50), "< 50 %" },
+                { 0, T("Ninguna"), T("no") },
             }),
-            self:toggleItem("balloons", "Zoom a los bocadillos"),
-            self:toggleItem("spreads", "Páginas dobles: primero cada mitad", true),
-            self:choiceItem("gamma", function(l) return "Contraste: " .. l end, {
-                { 0, "El del lector", "normal" },
-                { 1.5, "Más", "más" },
-                { 2.0, "Mucho más", "mucho más" },
+            self:toggleItem("balloons", T("Zoom a los bocadillos")),
+            self:toggleItem("spreads", T("Páginas dobles: primero cada mitad"), true),
+            self:choiceItem("gamma", function(l) return T("Contraste: %s", l) end, {
+                { 0, T("El del lector"), T("normal") },
+                { 1.5, T("Más"), T("más") },
+                { 2.0, T("Mucho más"), T("mucho más") },
             }),
-            self:toggleItem("indicator", "Mostrar el número de paso («3/7»)"),
-            self:choiceItem("refresh_every", function(l) return "Refresco completo: " .. l end, {
-                { 1, "Cada paso", "cada paso" },
-                { 4, "Cada 4 pasos", "4 pasos" },
-                { 8, "Cada 8 pasos", "8 pasos" },
-                { 12, "Cada 12 pasos", "12 pasos" },
-                { 20, "Cada 20 pasos", "20 pasos" },
-                { -1, "Al cambiar de página", "cada página" },
-                { 0, "Nunca", "nunca" },
+            self:toggleItem("indicator", T("Mostrar el número de paso («3/7»)")),
+            self:choiceItem("refresh_every", function(l) return T("Refresco completo: %s", l) end, {
+                { 1, T("Cada paso"), T("cada paso") },
+                { 4, T("Cada %d pasos", 4), T("%d pasos", 4) },
+                { 8, T("Cada %d pasos", 8), T("%d pasos", 8) },
+                { 12, T("Cada %d pasos", 12), T("%d pasos", 12) },
+                { 20, T("Cada %d pasos", 20), T("%d pasos", 20) },
+                { -1, T("Al cambiar de página"), T("cada página") },
+                { 0, T("Nunca"), T("nunca") },
             }, nil, true),
-            self:choiceItem("prefetch", function(l) return "Analizar por delante: " .. l end, {
-                { 2, "2 páginas" },
-                { 5, "5 páginas" },
-                { 0, "Todo el cómic", "todo el cómic" },
+            self:choiceItem("prefetch", function(l) return T("Analizar por delante: %s", l) end, {
+                { 2, T("%d páginas", 2) },
+                { 5, T("%d páginas", 5) },
+                { 0, T("Todo el cómic"), T("todo el cómic") },
             }),
-            self:choiceItem("detect_max", function(l) return "Análisis: " .. l end, {
-                { 900, "Normal (como Viñeta)", "normal" },
-                { 600, "Rápido (menos preciso)", "rápido" },
+            self:choiceItem("detect_max", function(l) return T("Análisis: %s", l) end, {
+                { 900, T("Normal (como Viñeta)"), T("normal") },
+                { 600, T("Rápido (menos preciso)"), T("rápido") },
             }, function()
                 -- Detections made at another size are dropped: look for the panels again.
                 self:redetect()

@@ -9,7 +9,7 @@
 
 Ein [KOReader](https://koreader.rocks)-Plugin, um Comics auf E-Ink-Readern **Panel für Panel** zu lesen. Der Reader findet die Panels selbst mit dem Detektor von Viñeta, während du liest: Am Computer musst du nichts vorbereiten, und die Comic-Datei wird nicht verändert.
 
-> **Hinweis:** Die Menüs des Plugins sind vorerst auf Spanisch. Unten werden die Menüpunkte so zitiert, wie sie auf dem Bildschirm erscheinen, gefolgt von ihrer Bedeutung.
+Die Menüs des Plugins folgen der Sprache von KOReader: Englisch, Spanisch, Portugiesisch, Französisch oder Deutsch (Englisch bei jeder anderen Sprache).
 
 ## Installation
 
@@ -26,7 +26,7 @@ Comics öffnen sich automatisch im Panel-für-Panel-Modus. Jede Seite wird zuers
 
 Jede Seite wird beim ersten Lesen im Hintergrund analysiert, und das Ergebnis wird gespeichert: Wenn du zum Comic zurückkehrst, musst du nicht mehr warten.
 
-Im KOReader-Menü → Navigations-Tab → „Viñeta a viñeta“ (Panel für Panel) gibt es den Schalter **„Activado“** (aktiviert), um das Plugin ein- oder auszuschalten. Von dort aus startest du den Modus auch mit einem PDF oder wenn du ihn verlassen hast.
+Im KOReader-Menü → Navigations-Tab → „Panel für Panel“ gibt es den Schalter **„Aktiviert“**, um das Plugin ein- oder auszuschalten. Von dort aus startest du den Modus auch mit einem PDF oder wenn du ihn verlassen hast.
 
 | | |
 |---|---|
@@ -37,9 +37,9 @@ Im KOReader-Menü → Navigations-Tab → „Viñeta a viñeta“ (Panel für Pa
 | Auseinanderziehen (zwei Finger) / nach oben oder unten wischen | Zoom wieder an: Panel für Panel ab dem ersten Panel |
 | Tippen in der Mitte | Menü (Manga-Leserichtung, Zoom, ganze Seite, beenden) |
 
-Ohne Zoom zeigt die Ecke „sin zoom“ (ohne Zoom). Jeder Comic merkt sich, ob du ihn mit ein- oder ausgeschaltetem Zoom verlassen hast.
+Ohne Zoom zeigt die Ecke „ohne Zoom“. Jeder Comic merkt sich, ob du ihn mit ein- oder ausgeschaltetem Zoom verlassen hast.
 
-Im KOReader-Menü „Viñeta a viñeta“ kannst du außerdem:
+Im KOReader-Menü „Panel für Panel“ kannst du außerdem:
 
 - jede Seite ganz beginnen oder direkt mit ihrem ersten Panel;
 - Panels, die nicht um 10, 20, 30 oder 50 % breiter würden, in zwei Hälften teilen – oder keine;
@@ -51,7 +51,7 @@ Im KOReader-Menü „Viñeta a viñeta“ kannst du außerdem:
 - 2 Seiten, 5 Seiten oder den ganzen Comic im Voraus analysieren und die schnelle Analyse wählen (weniger genau);
 - die Panels eines Comics neu erkennen lassen.
 
-Unter „Toques y gestos“ (Tippen und Gesten) kannst du einer Geste „Activar o desactivar Viñeta a viñeta“ (Panel für Panel ein-/ausschalten) zuweisen.
+In den Gesten-Einstellungen von KOReader kannst du einer Geste „Panel für Panel ein- oder ausschalten“ zuweisen.
 
 Wie der Detektor in Lua aufgebaut ist (auf Spanisch): [docs/detector-lua.md](docs/detector-lua.md).
 

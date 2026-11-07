@@ -9,7 +9,7 @@
 
 Plugin do [KOReader](https://koreader.rocks) para ler banda desenhada **vinheta a vinheta** em leitores e-ink. É o próprio leitor que encontra as vinhetas com o detetor da Viñeta, enquanto lê: não é preciso preparar nada no computador e o ficheiro do livro não é alterado.
 
-> **Nota:** por agora, os menus do plugin estão em espanhol. Abaixo, as opções aparecem tal como surgem no ecrã, seguidas do seu significado.
+Os menus do plugin seguem o idioma do KOReader: inglês, espanhol, português, francês ou alemão (inglês para qualquer outro idioma).
 
 ## Instalação
 
@@ -26,7 +26,7 @@ O livro abre automaticamente no modo vinheta a vinheta. Cada página é mostrada
 
 Cada página é analisada em segundo plano na primeira vez que é lida, e o resultado fica guardado: quando voltar ao livro, já não tem de esperar.
 
-O menu do KOReader → separador de navegação → «Viñeta a viñeta» (vinheta a vinheta) tem o interruptor **«Activado»** (ativado) para ligar ou desligar o plugin. A partir daí também pode entrar no modo com um PDF, ou se tiver saído dele.
+O menu do KOReader → separador de navegação → «Vinheta a vinheta» tem o interruptor **«Ativado»** para ligar ou desligar o plugin. A partir daí também pode entrar no modo com um PDF, ou se tiver saído dele.
 
 | | |
 |---|---|
@@ -37,9 +37,9 @@ O menu do KOReader → separador de navegação → «Viñeta a viñeta» (vinhe
 | Afastar dois dedos / deslizar para cima ou para baixo | Voltar a ativar o zoom: vinheta a vinheta a partir da primeira |
 | Toque no centro | Menu (sentido manga, zoom, página inteira, sair) |
 
-Sem zoom, o canto mostra «sin zoom» (sem zoom). Cada livro lembra-se se o deixou com o zoom ativado ou desativado.
+Sem zoom, o canto mostra «sem zoom». Cada livro lembra-se se o deixou com o zoom ativado ou desativado.
 
-No menu «Viñeta a viñeta» do KOReader também pode:
+No menu «Vinheta a vinheta» do KOReader também pode:
 
 - começar cada página inteira ou ir diretamente para a primeira vinheta;
 - dividir em duas metades as vinhetas que não ganham 10, 20, 30 ou 50 % de largura, ou nenhuma;
@@ -51,7 +51,7 @@ No menu «Viñeta a viñeta» do KOReader também pode:
 - analisar 2 páginas à frente, 5 ou o livro inteiro, e escolher a análise rápida (menos precisa);
 - voltar a procurar as vinhetas de um livro.
 
-Em «Toques y gestos» (toques e gestos) pode atribuir a um gesto a opção «Activar o desactivar Viñeta a viñeta» (ativar ou desativar vinheta a vinheta).
+Nas definições de gestos do KOReader pode atribuir a um gesto a opção «Ativar ou desativar vinheta a vinheta».
 
 Como foi feito o detetor em Lua (em espanhol): [docs/detector-lua.md](docs/detector-lua.md).
 

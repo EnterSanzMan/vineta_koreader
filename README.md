@@ -9,7 +9,7 @@
 
 A [KOReader](https://koreader.rocks) plugin for reading comics **panel by panel** on e-ink readers. The reader itself finds the panels with Viñeta's detector while you read: there is nothing to prepare on your computer and the comic file is never modified.
 
-> **Note:** the plugin's menus are in Spanish for now. Below, menu entries are quoted as they appear on screen, followed by their meaning.
+The plugin's menus follow KOReader's language: English, Spanish, Portuguese, French or German (English for any other language).
 
 ## Installation
 
@@ -26,7 +26,7 @@ Comics open in panel-by-panel mode automatically. Each page is first shown whole
 
 Each page is analysed in the background the first time it is read, and the result is saved: when you come back to the comic there is no waiting.
 
-KOReader's menu → navigation tab → «Viñeta a viñeta» (panel by panel) has the **«Activado»** (enabled) switch to turn the plugin on or off. From there you can also enter the mode with a PDF, or if you left it.
+KOReader's menu → navigation tab → "Panel by panel" has the **"Enabled"** switch to turn the plugin on or off. From there you can also enter the mode with a PDF, or if you left it.
 
 | | |
 |---|---|
@@ -37,9 +37,9 @@ KOReader's menu → navigation tab → «Viñeta a viñeta» (panel by panel) ha
 | Spread (two fingers apart) / swipe up or down | Turn zoom back on: panel by panel from the first panel |
 | Tap in the centre | Menu (manga direction, zoom, whole page, exit) |
 
-With zoom off, the corner shows «sin zoom» (no zoom). Each comic remembers whether you left it with zoom on or off.
+With zoom off, the corner shows "no zoom". Each comic remembers whether you left it with zoom on or off.
 
-In KOReader's «Viñeta a viñeta» menu you can also:
+In KOReader's "Panel by panel" menu you can also:
 
 - start each page whole or go straight to its first panel;
 - split into two halves the panels that don't gain 10, 20, 30 or 50 % in width, or none;
@@ -51,7 +51,7 @@ In KOReader's «Viñeta a viñeta» menu you can also:
 - analyse 2 pages ahead, 5, or the whole comic, and choose the fast analysis (less accurate);
 - detect the panels of a comic again.
 
-In «Toques y gestos» (Taps and gestures) you can assign «Activar o desactivar Viñeta a viñeta» (toggle panel by panel) to a gesture.
+In KOReader's gesture settings you can assign "Turn panel by panel on or off" to a gesture.
 
 How the detector is built in Lua (in Spanish): [docs/detector-lua.md](docs/detector-lua.md).
 

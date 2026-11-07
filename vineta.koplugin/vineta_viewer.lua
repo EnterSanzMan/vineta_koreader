@@ -24,6 +24,7 @@ local Size = require("ui/size")
 local TextWidget = require("ui/widget/textwidget")
 local logger = require("logger")
 local Panels = require("vineta_panels")
+local T = require("vineta_i18n").T
 local Screen = Device.screen
 
 local PanelViewer = InputContainer:extend{
@@ -147,7 +148,7 @@ function PanelViewer:indicator()
     local n = #self.nav:steps(self.nav.page)
     local label
     if self.zoom == false then
-        label = "sin zoom"
+        label = T("sin zoom")
     elseif self.nav:pending() then
         label = "…"
     else
@@ -228,7 +229,7 @@ function PanelViewer:onDetected(page)
 end
 
 function PanelViewer:notifyWaiting()
-    Notification:notify("Buscando viñetas…")
+    Notification:notify(T("Buscando viñetas…"))
 end
 
 function PanelViewer:refresh(page_changed)
@@ -343,7 +344,7 @@ function PanelViewer:setZoom(on)
     self._waiting = false
     self.nav:reset()
     self.nav:jump(self.nav.page, on and self.nav:firstPanel() or 1)
-    Notification:notify(on and "Zoom activado: viñeta a viñeta" or "Zoom desactivado: páginas enteras")
+    Notification:notify(on and T("Zoom activado: viñeta a viñeta") or T("Zoom desactivado: páginas enteras"))
     self:renderStep()
     return true
 end
@@ -366,11 +367,11 @@ end
 function PanelViewer:showMenu()
     local dialog
     dialog = ButtonDialog:new{
-        title = ("Página %d de %d · paso %d de %d"):format(
+        title = T("Página %d de %d · paso %d de %d",
             self.nav.page, self.nav.page_count, self.nav.index, #self.nav:steps(self.nav.page)),
         buttons = {
             { {
-                text = self.rtl and "Sentido: manga (derecha a izquierda)" or "Sentido: occidental (izquierda a derecha)",
+                text = self.rtl and T("Sentido: manga (derecha a izquierda)") or T("Sentido: occidental (izquierda a derecha)"),
                 callback = function()
                     UIManager:close(dialog)
                     self.rtl_user = true
@@ -378,21 +379,21 @@ function PanelViewer:showMenu()
                 end,
             } },
             { {
-                text = self.zoom == false and "Activar el zoom (viñeta a viñeta)" or "Desactivar el zoom (páginas enteras)",
+                text = self.zoom == false and T("Activar el zoom (viñeta a viñeta)") or T("Desactivar el zoom (páginas enteras)"),
                 callback = function()
                     UIManager:close(dialog)
                     self:setZoom(self.zoom == false)
                 end,
             } },
             { {
-                text = self._whole_page and "Volver a la viñeta" or "Ver la página completa",
+                text = self._whole_page and T("Volver a la viñeta") or T("Ver la página completa"),
                 callback = function()
                     UIManager:close(dialog)
                     self:onHold()
                 end,
             } },
             { {
-                text = "Salir del modo viñeta",
+                text = T("Salir del modo viñeta"),
                 callback = function()
                     UIManager:close(dialog)
                     self:onExitPanelMode()
